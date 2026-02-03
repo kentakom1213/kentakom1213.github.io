@@ -43,8 +43,8 @@ fn render_header(data: &IndexData) -> Markup {
 
     html! {
         header {
-            h1 { (p.name.en) }
-            p { (p.name.ja) }
+            h1 { (p.name.ja) }
+            p { (p.name.en) }
 
             @for line in &p.affiliation.lines {
                 p { (line) }

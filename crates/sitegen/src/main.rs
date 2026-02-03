@@ -1,5 +1,5 @@
 use anyhow::Context;
-use clap::{Args, Parser, Subcommand};
+use clap::{Args, Parser};
 use content::{LoadOptions, load_all};
 use std::path::PathBuf;
 use ui::render_index_string;
@@ -8,19 +8,13 @@ use ui::render_index_string;
 #[command(name = "sitegen")]
 #[command(about = "Static site generator for this repository", long_about = None)]
 struct Cli {
-    #[command(subcommand)]
-    command: Commands,
-}
-
-#[derive(Subcommand)]
-enum Commands {
-    Build(BuildArgs),
+    #[command(flatten)]
+    command: BuildArgs,
 }
 
 #[derive(Args, Clone)]
 struct BuildArgs {
     /// Content directory
-    #[arg(long, default_value = "content")]
     content_dir: PathBuf,
 
     /// Disable item sorting
@@ -30,11 +24,7 @@ struct BuildArgs {
 
 fn main() -> anyhow::Result<()> {
     let cli = Cli::parse();
-    match cli.command {
-        Commands::Build(args) => {
-            build_site(&args)?;
-        }
-    }
+    build_site(&cli.command)?;
     Ok(())
 }
 

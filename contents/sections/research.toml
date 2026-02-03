@@ -7,7 +7,35 @@ name = "査読無し国内発表"
 
 [[subsections.items]]
 authors = ["◯甲本健太", "栗田和宏", "小野廣隆"]
+title = "ラベル付き木に対する極大頻出誘導部分木マイニングの計算複雑性"
+venue = "第52回日本OR学会中部支部研究発表会"
+location = "愛知"
+date = "2025-03-01"
+
+[[subsections.items]]
+authors = ["◯甲本健太", "栗田和宏", "小野廣隆"]
+title = "ラベル付き木に対する極大頻出部分木マイニングの計算複雑性"
+venue = "列挙アルゴリズムセミナー"
+location = "群馬"
+date = "2025-03-06"
+
+[[subsections.items]]
+authors = ["◯甲本健太", "栗田和宏", "小野廣隆"]
 title = "⾼さ2の根付き⽊に対する頻出飽和部分⽊の多項式遅延列挙"
 venue = "2025年度夏のLAシンポジウム"
 location = "岩手"
 date = "2025-07-23"
+
+[[subsections.items]]
+authors = ["◯甲本健太", "栗田和宏", "小野廣隆"]
+title = "高さ定数の根付き木に対する極大/飽和頻出部分木マイニング問題の計算複雑性"
+venue = "アルゴリズム研究会"
+location = "高知"
+date = "2025-11-13"
+
+[[subsections]]
+name = "プレプリント"
+
+[[subsections.items]]
+authors = []
+title = ""
