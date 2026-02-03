@@ -1,0 +1,34 @@
+name = "職歴"
+key = "work"
+order = 25
+
+[[subsections]]
+name = "インターン"
+
+[[subsections.items]]
+start_date = "2021-04"
+title = "名古屋大学NUOCWプロジェクト"
+detail = "バックエンドエンジニア"
+
+[[subsections.items]]
+start_date = "2023-09"
+end_date = "2023-09"
+title = "ちゅらデータ株式会社"
+detail = "データエンジニア"
+
+[[subsections.items]]
+start_date = "2023-06"
+end_date = "2024-10"
+title = "アイクリスタル株式会社"
+detail = "データサイエンティスト"
+
+[[subsections.items]]
+start_date = "2024-06"
+title = "株式会社AVILEN"
+detail = "バックエンドエンジニア"
+
+[[subsections.items]]
+start_date = "2025-08"
+end_date = "2025-09"
+title = "LINEヤフー株式会社"
+detail = "バックエンドエンジニア"

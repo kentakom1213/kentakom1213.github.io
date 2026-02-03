@@ -4,6 +4,7 @@ order = 10
 
 [[subsections]]
 name = "査読無し国内発表"
+order = 10
 
 [[subsections.items]]
 authors = ["◯甲本健太", "栗田和宏", "小野廣隆"]
@@ -35,6 +36,7 @@ date = "2025-11-13"
 
 [[subsections]]
 name = "プレプリント"
+order = 20
 
 [[subsections.items]]
 authors = []
