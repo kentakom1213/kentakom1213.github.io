@@ -1,0 +1,13 @@
+name = "研究"
+key = "research"
+order = 10
+
+[[subsections]]
+name = "査読無し国内発表"
+
+[[subsections.items]]
+authors = ["◯甲本健太", "栗田和宏", "小野廣隆"]
+title = "⾼さ2の根付き⽊に対する頻出飽和部分⽊の多項式遅延列挙"
+venue = "2025年度夏のLAシンポジウム"
+location = "岩手"
+date = "2025-07-23"

@@ -1,0 +1,13 @@
+name = "資格"
+key = "qualifications"
+order = 50
+
+[[items]]
+date = "2025-07"
+title = "応用情報技術者"
+note = ""
+
+[[items]]
+date = "2023-06"
+title = "基本情報技術者"
+note = ""
