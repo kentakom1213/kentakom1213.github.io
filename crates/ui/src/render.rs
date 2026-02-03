@@ -5,7 +5,7 @@ pub fn render_index(data: &IndexData) -> Markup {
     let lang = data.config.language.as_deref().unwrap_or("ja");
 
     // CSS のパス（site.toml に合わせて可変にできるが，まずは固定で十分）
-    let css_href = "/assets/style.css";
+    let css_href = "./assets/style.css";
 
     html! {
         (DOCTYPE)
