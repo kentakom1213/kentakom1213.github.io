@@ -34,10 +34,6 @@ pub fn load_all(opt: LoadOptions) -> anyhow::Result<IndexData> {
     let profile: ProfileToml = read_toml(&profile_path)
         .with_context(|| format!("failed to read {}", profile_path.display()))?;
 
-    if !sections_dir.exists() {
-        bail!("sections dir not found: {}", sections_dir.display());
-    }
-
     let mut sections = read_sections(&sections_dir)
         .with_context(|| format!("failed to read sections from {}", sections_dir.display()))?;
 

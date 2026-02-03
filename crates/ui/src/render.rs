@@ -122,9 +122,9 @@ fn render_item_line(it: &ItemToml) -> Markup {
 
 fn is_publication_like(it: &ItemToml) -> bool {
     !it.authors.is_empty()
-        && it.venue.as_deref().unwrap_or("").trim().len() > 0
-        && it.location.as_deref().unwrap_or("").trim().len() > 0
-        && it.date.as_deref().unwrap_or("").trim().len() > 0
+        && !it.venue.as_deref().unwrap_or("").trim().is_empty()
+        && !it.location.as_deref().unwrap_or("").trim().is_empty()
+        && !it.date.as_deref().unwrap_or("").trim().is_empty()
 }
 
 /// 指定フォーマット：
