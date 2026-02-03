@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "crates/sitegen",
+    "crates/content",
+    "crates/ui",
+]
