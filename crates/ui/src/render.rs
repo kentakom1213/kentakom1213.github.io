@@ -1,6 +1,8 @@
 use content::model::{IndexData, ItemToml, SectionToml, SubsectionToml};
 use maud::{DOCTYPE, Markup, html};
 
+use crate::links::render_text_with_links;
+
 pub fn render_index(data: &IndexData) -> Markup {
     let lang = data.config.language.as_deref().unwrap_or("ja");
 
@@ -133,21 +135,30 @@ fn is_publication_like(it: &ItemToml) -> bool {
 /// 指定フォーマット：
 /// `○著者, "タイトル," 会議名, 開催地, 2025年7月23日`
 fn render_publication_like(it: &ItemToml) -> Markup {
-    let authors = it.authors.join(", ");
     let title = &it.title;
     let venue = it.venue.as_deref().unwrap_or("");
     let location = it.location.as_deref().unwrap_or("");
     let date_ja = it.date.as_deref().map(format_date_ja).unwrap_or_default();
 
     html! {
-        (authors)
+        @for (i, author) in it.authors.iter().enumerate() {
+            (render_text_with_links(author))
+            @if i + 1 < it.authors.len() {
+                ", "
+            }
+        }
         ", "
-        "\""(title)",\" "
-        (venue)
+        "\""(render_text_with_links(title))"\", "
+        (render_text_with_links(venue))
         ", "
-        (location)
+        (render_text_with_links(location))
         ", "
         (date_ja)
+        @if let Some(detail) = it.detail.as_deref() {
+            @if !detail.trim().is_empty() {
+                " — " (render_text_with_links(detail))
+            }
+        }
     }
 }
 
@@ -162,10 +173,10 @@ fn render_timeline_like(it: &ItemToml) -> Markup {
         @if let Some(t) = time {
             (t) " "
         }
-        (it.title)
+        (render_text_with_links(&it.title))
         @if let Some(detail) = it.detail.as_deref() {
             @if !detail.trim().is_empty() {
-                " — " (detail)
+                " — " (render_text_with_links(detail))
             }
         }
     }
@@ -299,6 +310,7 @@ mod tests {
         assert!(html.contains("&quot;Paper,&quot;"));
         assert!(html.contains("Conf, Tokyo, 2025年7月3日"));
     }
+
 
     #[test]
     fn render_item_line_switches_by_publication_like() {

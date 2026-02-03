@@ -4,6 +4,5 @@
 cargo run -p sitegen -q -- contents 
 
 # 追加
-git add docs
-
 sync
+git add docs

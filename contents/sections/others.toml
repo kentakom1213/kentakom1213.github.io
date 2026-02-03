@@ -1,0 +1,9 @@
+name = "その他"
+key = "others"
+order = 80
+
+[[items]]
+title = "GitHub: [kentakom1213](https://github.com/kentakom1213)"
+
+[[items]]
+title = "AtCoder: [powell](https://atcoder.jp/users/powell)"

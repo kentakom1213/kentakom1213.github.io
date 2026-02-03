@@ -33,11 +33,8 @@ title = "高さ定数の根付き木に対する極大/飽和頻出部分木マ�
 venue = "アルゴリズム研究会"
 location = "高知"
 date = "2025-11-13"
+detail = "[スライド](https://kentakom1213.github.io/slides/2025-algo-kochi.pdf)"
 
 [[subsections]]
 name = "プレプリント"
 order = 20
-
-[[subsections.items]]
-authors = []
-title = ""
