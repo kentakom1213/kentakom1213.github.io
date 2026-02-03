@@ -1,0 +1,44 @@
+:root {
+  --bg: #f0f0f0;
+  --paper: #ffffff;
+  --ink: #000000;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+}
+
+.container {
+  width: min(100%, 1000px);
+  height: auto;
+  margin: 0 auto;
+  padding: 20px;
+  display: block;
+  background-color: var(--paper);
+}
+
+h1,
+h1 + .en-name {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+h1 {
+  margin: 0 20px 20px 0;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+h1 + .en-name {
+  margin: 0 0 20px;
+  line-height: 1.7;
+}
+
+header p {
+  margin: 0;
+}
+
+footer {
+  text-align: center;
+}

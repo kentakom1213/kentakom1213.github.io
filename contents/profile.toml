@@ -3,7 +3,7 @@ ja = "甲本 健太"
 en = "KOMOTO Kenta"
 
 [affiliation]
-lines = ["名古屋大学大学院 情報学研究科 数理情報学専攻"]
+affiliation = "名古屋大学大学院 情報学研究科 数理情報学専攻"
 
 [contact]
 email = "komoto.kenta.v1(at)s.mail.nagoya-u.ac.jp"

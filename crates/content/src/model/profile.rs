@@ -16,7 +16,7 @@ pub struct Name {
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct Affiliation {
-    pub lines: Vec<String>,
+    pub affiliation: String,
 }
 
 #[derive(Debug, Deserialize, Clone)]

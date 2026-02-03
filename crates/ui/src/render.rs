@@ -17,17 +17,20 @@ pub fn render_index(data: &IndexData) -> Markup {
                 link rel="stylesheet" href=(css_href);
             }
             body {
-                (render_header(data))
+                div class="container" {
 
-                main {
-                    @for sec in &data.sections {
-                        (render_section(sec))
+                    (render_header(data))
+
+                    main {
+                        @for sec in &data.sections {
+                            (render_section(sec))
+                        }
                     }
-                }
 
-                footer {
-                    // 太字は使わない方針にする
-                    p { "© " (data.profile.name.en) }
+                    footer {
+                        // 太字は使わない方針にする
+                        p { "© " (data.profile.name.en) }
+                    }
                 }
             }
         }
@@ -44,10 +47,10 @@ fn render_header(data: &IndexData) -> Markup {
     html! {
         header {
             h1 { (p.name.ja) }
-            p { (p.name.en) }
+            p class="en-name" { (p.name.en) }
 
-            @for line in &p.affiliation.lines {
-                p { (line) }
+            p {
+                "所属: " (p.affiliation.affiliation)
             }
 
             p {
@@ -324,7 +327,7 @@ mod tests {
                     en: "Ken".to_string(),
                 },
                 affiliation: content::model::Affiliation {
-                    lines: vec!["Uni".to_string()],
+                    affiliation: "Uni".to_string(),
                 },
                 contact: content::model::Contact {
                     email: "a@example.com".to_string(),
