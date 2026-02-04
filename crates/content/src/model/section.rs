@@ -8,10 +8,6 @@ use crate::model::item::ItemToml;
 pub enum SortKey {
     /// 日付
     Date,
-    /// 開始日付
-    StartDate,
-    /// 終了日付
-    EndDate,
     /// タイトルの辞書順
     Title,
 }

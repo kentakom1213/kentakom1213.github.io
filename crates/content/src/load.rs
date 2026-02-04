@@ -115,8 +115,6 @@ fn get_item_sort_by(
         match sort {
             SortKey::Title => (false, item.title.clone()),
             SortKey::Date => item_date_key(&[&item.date, &item.start_date, &item.end_date]),
-            SortKey::StartDate => item_date_key(&[&item.start_date, &item.date, &item.end_date]),
-            SortKey::EndDate => item_date_key(&[&item.end_date, &item.date, &item.start_date]),
         }
     };
     move |a, b| {
@@ -135,10 +133,11 @@ fn get_item_sort_by(
 
 fn item_date_key(dates: &[&Option<String>]) -> (bool, String) {
     let first = dates.into_iter().find_map(|x| x.as_ref());
-    let Some(date) = first else {
-        return (true, String::new());
-    };
-    (false, normalize_date_key(date))
+    if let Some(date) = first {
+        (false, normalize_date_key(date))
+    } else {
+        (true, String::new())
+    }
 }
 
 /// ソート用キー（辞書順比較できる形に正規化）

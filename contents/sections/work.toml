@@ -4,6 +4,8 @@ order = 25
 
 [[subsections]]
 name = "インターン"
+sort = "date"
+rev = true
 
 [[subsections.items]]
 start_date = "2021-04"
