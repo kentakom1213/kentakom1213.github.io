@@ -30,7 +30,7 @@ ja = "Taro"
 en = "Taro"
 
 [affiliation]
-lines = ["Example University"]
+affiliation = "Example University"
 
 [contact]
 email = "taro@example.com"

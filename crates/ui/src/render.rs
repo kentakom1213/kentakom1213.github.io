@@ -307,16 +307,15 @@ mod tests {
     fn render_publication_like_format() {
         let html = render_publication_like(&item_publication()).into_string();
         assert!(html.contains("A, B, "));
-        assert!(html.contains("&quot;Paper,&quot;"));
+        assert!(html.contains("&quot;Paper&quot;,"));
         assert!(html.contains("Conf, Tokyo, 2025年7月3日"));
     }
-
 
     #[test]
     fn render_item_line_switches_by_publication_like() {
         let pub_html = render_item_line(&item_publication()).into_string();
         assert!(pub_html.contains("A, B, "));
-        assert!(pub_html.contains("&quot;Paper,&quot;"));
+        assert!(pub_html.contains("&quot;Paper&quot;,"));
         assert!(pub_html.contains("Conf, Tokyo, 2025年7月3日"));
 
         let timeline = item_timeline("2020-01", Some("Detail"));
@@ -350,10 +349,12 @@ mod tests {
                 name: "Research".to_string(),
                 key: "research".to_string(),
                 order: None,
+                sort: None,
                 items: vec![item_publication()],
                 subsections: vec![content::model::SubsectionToml {
                     name: "Sub".to_string(),
                     order: None,
+                    sort: None,
                     items: vec![item_timeline("2020-01", Some("Detail"))],
                 }],
             }],
@@ -365,7 +366,7 @@ mod tests {
         assert!(html.contains("Ken"));
         assert!(html.contains("兼"));
         assert!(html.contains("Email: a@example.com"));
-        assert!(html.contains("href=\"/assets/style.css\""));
+        assert!(html.contains("href=\"./assets/style.css\""));
         assert!(html.contains("href=\"#research\""));
         assert!(html.contains("<h2 id=\"research\">Research</h2>"));
         assert!(html.contains("<h3>Sub</h3>"));
