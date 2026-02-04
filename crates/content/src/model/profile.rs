@@ -21,5 +21,5 @@ pub struct Affiliation {
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct Contact {
-    pub email: String,
+    pub email: Option<String>,
 }

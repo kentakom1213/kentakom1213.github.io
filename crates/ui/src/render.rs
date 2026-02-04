@@ -9,6 +9,9 @@ pub fn render_index(data: &IndexData) -> Markup {
     // CSS のパス（site.toml に合わせて可変にできるが，まずは固定で十分）
     let css_href = "./assets/style.css";
 
+    let og_title = &data.config.title;
+    let og_description = build_og_description(data);
+
     html! {
         (DOCTYPE)
         html lang=(lang) {
@@ -16,6 +19,12 @@ pub fn render_index(data: &IndexData) -> Markup {
                 meta charset="utf-8";
                 meta name="viewport" content="width=device-width, initial-scale=1";
                 title { (data.config.title) }
+                meta property="og:title" content=(og_title);
+                meta property="og:type" content="website";
+                meta property="og:description" content=(og_description);
+                meta name="twitter:card" content="summary";
+                meta name="twitter:title" content=(og_title);
+                meta name="twitter:description" content=(og_description);
                 link rel="stylesheet" href=(css_href);
             }
             body {
@@ -43,6 +52,13 @@ pub fn render_index_string(data: &IndexData) -> String {
     render_index(data).into_string()
 }
 
+fn build_og_description(data: &IndexData) -> String {
+    format!(
+        "{} ({})",
+        data.profile.name.ja, data.profile.affiliation.affiliation
+    )
+}
+
 fn render_header(data: &IndexData) -> Markup {
     let p = &data.profile;
 
@@ -55,8 +71,10 @@ fn render_header(data: &IndexData) -> Markup {
                 "所属: " (p.affiliation.affiliation)
             }
 
-            p {
-                "Email: " (p.contact.email)
+            @if let Some(email) = &p.contact.email {
+                p {
+                    "Email: " (email)
+                }
             }
 
             @if let Some(lead) = &p.lead {
@@ -356,7 +374,7 @@ mod tests {
                     affiliation: "Uni".to_string(),
                 },
                 contact: content::model::Contact {
-                    email: "a@example.com".to_string(),
+                    email: Some("a@example.com".to_string()),
                 },
                 lead: Some("Lead".to_string()),
             },
@@ -382,6 +400,12 @@ mod tests {
         let html = render_index_string(&data);
         assert!(html.contains("lang=\"ja\""));
         assert!(html.contains("<title>My Site</title>"));
+        assert!(html.contains("property=\"og:title\" content=\"My Site\""));
+        assert!(html.contains("property=\"og:type\" content=\"website\""));
+        assert!(html.contains("property=\"og:description\" content=\"兼 (Uni)\""));
+        assert!(html.contains("name=\"twitter:card\" content=\"summary\""));
+        assert!(html.contains("name=\"twitter:title\" content=\"My Site\""));
+        assert!(html.contains("name=\"twitter:description\" content=\"兼 (Uni)\""));
         assert!(html.contains("Ken"));
         assert!(html.contains("兼"));
         assert!(html.contains("Email: a@example.com"));
