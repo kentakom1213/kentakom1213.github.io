@@ -83,7 +83,7 @@ fn render_section(sec: &SectionToml) -> Markup {
             h2 id=(sec.key) { (sec.name) }
 
             @if !sec.items.is_empty() {
-                (render_generic_items(&sec.items))
+                (render_generic_items(&sec.items, sec.numbering))
             }
 
             @if !sec.subsections.is_empty() {
@@ -99,19 +99,30 @@ fn render_subsection(sub: &SubsectionToml) -> Markup {
     html! {
         h3 { (sub.name) }
         @if !sub.items.is_empty() {
-            (render_generic_items(&sub.items))
+            (render_generic_items(&sub.items, sub.numbering))
         } @else {
             // 空なら何も出さない（必要なら "None" などを出す）
         }
     }
 }
 
-/// 1 つの `ItemToml` を「研究発表フォーマット」または「一般フォーマット」で 1 行にする
-fn render_generic_items(items: &[ItemToml]) -> Markup {
-    html! {
-        ul {
-            @for it in items {
-                li { (render_item_line(it)) }
+/// 1 つの `ItemToml` を「研究発表フォーマット」または「一般フォーマット」で 1 行にする．
+/// numbering が true の場合，番号付きでフォーマットする．
+fn render_generic_items(items: &[ItemToml], numbering: bool) -> Markup {
+    if numbering {
+        html! {
+            ol {
+                @for it in items {
+                    li { (render_item_line(it)) }
+                }
+            }
+        }
+    } else {
+        html! {
+            ul {
+                @for it in items {
+                    li { (render_item_line(it)) }
+                }
             }
         }
     }
@@ -355,12 +366,14 @@ mod tests {
                 order: None,
                 sort: None,
                 rev: None,
+                numbering: false,
                 items: vec![item_publication()],
                 subsections: vec![content::model::SubsectionToml {
                     name: "Sub".to_string(),
                     order: None,
                     sort: None,
                     rev: None,
+                    numbering: false,
                     items: vec![item_timeline("2020-01", Some("Detail"))],
                 }],
             }],

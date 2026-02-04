@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+
 :root {
   --bg: #f0f0f0;
   --paper: #ffffff;
@@ -7,15 +9,22 @@
 body {
   margin: 0;
   background-color: var(--bg);
+  font-family: "Noto Sans JP";
 }
 
 .container {
-  width: min(100%, 1000px);
+  width: min(100%, 900px);
   height: auto;
   margin: 0 auto;
   padding: 20px;
   display: block;
   background-color: var(--paper);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 400;
 }
 
 h1,
@@ -26,17 +35,27 @@ h1 + .en-name {
 
 h1 {
   margin: 0 20px 20px 0;
-  line-height: 1.2;
+  line-height: 1;
   white-space: nowrap;
 }
 
 h1 + .en-name {
   margin: 0 0 20px;
-  line-height: 1.7;
+  line-height: 1;
 }
 
 header p {
   margin: 0;
+}
+
+section {
+  margin: 40px 0 0;
+}
+
+section h2 {
+  width: 200px;
+  padding: 0 0 1px 5px;
+  border-bottom: 1.5px solid #000;
 }
 
 footer {

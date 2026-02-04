@@ -24,6 +24,10 @@ pub struct SectionToml {
     /// 逆順（降順）にするか
     pub rev: Option<bool>,
 
+    // 番号付きで表示するか
+    #[serde(default)]
+    pub numbering: bool,
+
     #[serde(default)]
     pub items: Vec<ItemToml>,
 
@@ -41,6 +45,10 @@ pub struct SubsectionToml {
     pub sort: Option<SortKey>,
     /// 逆順（降順）にするか
     pub rev: Option<bool>,
+
+    // 番号付きで表示するか
+    #[serde(default)]
+    pub numbering: bool,
 
     #[serde(default)]
     pub items: Vec<ItemToml>,
