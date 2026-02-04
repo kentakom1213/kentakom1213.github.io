@@ -4,6 +4,7 @@ use serde::Deserialize;
 pub struct ConfigToml {
     pub title: String,
     pub language: Option<String>,
+    pub google_site_verification: Option<String>,
     pub build: Option<Build>,
     pub assets: Option<Assets>,
 }

@@ -11,6 +11,12 @@ pub fn render_index(data: &IndexData) -> Markup {
 
     let og_title = &data.config.title;
     let og_description = build_og_description(data);
+    let google_site_verification = data
+        .config
+        .google_site_verification
+        .as_deref()
+        .map(str::trim)
+        .filter(|value| !value.is_empty());
 
     html! {
         (DOCTYPE)
@@ -25,6 +31,9 @@ pub fn render_index(data: &IndexData) -> Markup {
                 meta name="twitter:card" content="summary";
                 meta name="twitter:title" content=(og_title);
                 meta name="twitter:description" content=(og_description);
+                @if let Some(token) = google_site_verification {
+                    meta name="google-site-verification" content=(token);
+                }
                 link rel="stylesheet" href=(css_href);
             }
             body {
@@ -362,6 +371,7 @@ mod tests {
             config: content::model::ConfigToml {
                 title: "My Site".to_string(),
                 language: None,
+                google_site_verification: None,
                 build: None,
                 assets: None,
             },
