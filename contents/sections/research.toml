@@ -41,3 +41,8 @@ detail = "[スライド](https://kentakom1213.github.io/slides/2025-algo-kochi.p
 [[subsections]]
 name = "プレプリント"
 order = 20
+
+[[subsections.items]]
+authors = ["Kenta Komoto", "Kazuhiro Kurita", "Hirotaka Ono"]
+title = "On the Complexity of Maximal/Closed Frequent Tree Mining for Bounded Height Trees"
+detail = "[arXiv](https://arxiv.org/abs/2602.03436)"
