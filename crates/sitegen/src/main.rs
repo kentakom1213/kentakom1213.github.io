@@ -31,7 +31,6 @@ fn main() -> anyhow::Result<()> {
 fn build_site(args: &BuildArgs) -> anyhow::Result<()> {
     let data = load_all(LoadOptions {
         content_dir: args.content_dir.clone(),
-        sort_items: !args.no_sort,
     })?;
 
     let (output_dir, output_file) = resolve_build_output(&data);

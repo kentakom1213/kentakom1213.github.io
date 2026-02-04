@@ -3,7 +3,7 @@ use serde::Deserialize;
 use crate::model::item::ItemToml;
 
 /// アイテムをソートする際のキー
-#[derive(Debug, Deserialize, Clone)]
+#[derive(Debug, Deserialize, Clone, Copy)]
 #[serde(rename_all = "snake_case")]
 pub enum SortKey {
     /// 日付
@@ -23,7 +23,10 @@ pub struct SectionToml {
     pub key: String, // h2 の id に使う
     pub order: Option<i32>,
 
+    /// アイテムをソートする際のキー
     pub sort: Option<SortKey>,
+    /// 逆順（降順）にするか
+    pub rev: Option<bool>,
 
     #[serde(default)]
     pub items: Vec<ItemToml>,
@@ -38,7 +41,10 @@ pub struct SubsectionToml {
     pub name: String,
     pub order: Option<i32>,
 
+    /// アイテムをソートする際のキー
     pub sort: Option<SortKey>,
+    /// 逆順（降順）にするか
+    pub rev: Option<bool>,
 
     #[serde(default)]
     pub items: Vec<ItemToml>,

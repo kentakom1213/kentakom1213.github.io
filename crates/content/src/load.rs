@@ -1,23 +1,19 @@
 use anyhow::{Context, bail};
-use std::fs;
 use std::path::{Path, PathBuf};
+use std::{cmp, fs};
 
-use crate::model::{ConfigToml, IndexData, ProfileToml, SectionToml};
+use crate::model::{self, ConfigToml, IndexData, ProfileToml, SectionToml, SortKey};
 
 #[derive(Debug, Clone)]
 pub struct LoadOptions {
     /// 例：content/
     pub content_dir: PathBuf,
-
-    /// items を日付でソートするか
-    pub sort_items: bool,
 }
 
 impl Default for LoadOptions {
     fn default() -> Self {
         Self {
             content_dir: PathBuf::from("content"),
-            sort_items: true,
         }
     }
 }
@@ -38,13 +34,19 @@ pub fn load_all(opt: LoadOptions) -> anyhow::Result<IndexData> {
         .with_context(|| format!("failed to read sections from {}", sections_dir.display()))?;
 
     // ソート
-    sections.sort_by_key(section_sort_key);
+    sections.sort_by_key(|s| s.order);
 
+    // セクションの中身をソート
     for sec in &mut sections {
-        sec.subsections.sort_by_key(subsection_sort_key);
+        // アイテムをソート
+        sort_items(sec.sort, sec.rev, &mut sec.items);
 
-        if opt.sort_items {
-            sort_items_in_section(sec);
+        // サブセクションをソート
+        sec.subsections.sort_by_key(|s| s.order);
+
+        // サブセクションの中身をソート
+        for ssec in &mut sec.subsections {
+            sort_items(ssec.sort, ssec.rev, &mut ssec.items);
         }
     }
 
@@ -91,31 +93,52 @@ fn read_toml<T: serde::de::DeserializeOwned>(path: &Path) -> anyhow::Result<T> {
     Ok(v)
 }
 
-fn section_sort_key(sec: &crate::model::SectionToml) -> (i32, String) {
-    (sec.order.unwrap_or(1000), sec.key.clone())
+fn sort_items(sort: Option<SortKey>, rev: Option<bool>, items: &mut [model::ItemToml]) {
+    let Some(sort) = sort else {
+        return;
+    };
+    let rev = rev.unwrap_or(false);
+
+    items.sort_by(get_item_sort_by(sort, rev));
 }
 
-fn subsection_sort_key(sub: &crate::model::SubsectionToml) -> (i32, String) {
-    (sub.order.unwrap_or(1000), sub.name.clone())
-}
+/// アイテム同士を比較する関数を返す
+///
+/// キーの優先順位:
+/// - date がない場合，最も後ろに送る
+/// - start_date と date がある場合は start_date を優先
+fn get_item_sort_by(
+    sort: SortKey,
+    rev: bool,
+) -> impl FnMut(&model::ItemToml, &model::ItemToml) -> cmp::Ordering {
+    let key = move |item: &model::ItemToml| -> (bool, String) {
+        match sort {
+            SortKey::Title => (false, item.title.clone()),
+            SortKey::Date => item_date_key(&[&item.date, &item.start_date, &item.end_date]),
+            SortKey::StartDate => item_date_key(&[&item.start_date, &item.date, &item.end_date]),
+            SortKey::EndDate => item_date_key(&[&item.end_date, &item.date, &item.start_date]),
+        }
+    };
+    move |a, b| {
+        let (mut ka, mut kb) = (key(a), key(b));
+        // None は常に末尾に
+        ka.0 ^= rev;
+        kb.0 ^= rev;
 
-fn sort_items_in_section(sec: &mut crate::model::SectionToml) {
-    sec.items.sort_by(item_sort_key_desc);
-    for sub in &mut sec.subsections {
-        sub.items.sort_by(item_sort_key_desc);
+        if rev {
+            ka.cmp(&kb).reverse()
+        } else {
+            ka.cmp(&kb)
+        }
     }
 }
 
-/// 降順（新しいものが上）
-///
-/// 優先順位：start_date > date > ""（不明）
-fn item_sort_key_desc(
-    a: &crate::model::ItemToml,
-    b: &crate::model::ItemToml,
-) -> std::cmp::Ordering {
-    let ka = item_key(a);
-    let kb = item_key(b);
-    kb.cmp(&ka)
+fn item_date_key(dates: &[&Option<String>]) -> (bool, String) {
+    let first = dates.into_iter().find_map(|x| x.as_ref());
+    let Some(date) = first else {
+        return (true, String::new());
+    };
+    (false, normalize_date_key(date))
 }
 
 /// ソート用キー（辞書順比較できる形に正規化）
@@ -129,16 +152,6 @@ fn item_sort_key_desc(
 /// - YYYY       -> YYYY-00-00
 /// - YYYY-MM    -> YYYY-MM-00
 /// - YYYY-MM-DD -> YYYY-MM-DD
-fn item_key(it: &crate::model::ItemToml) -> String {
-    if let Some(s) = it.start_date.as_deref() {
-        return normalize_date_key(s);
-    }
-    if let Some(s) = it.date.as_deref() {
-        return normalize_date_key(s);
-    }
-    String::new()
-}
-
 fn normalize_date_key(s: &str) -> String {
     let parts: Vec<&str> = s.split('-').collect();
     match parts.len() {

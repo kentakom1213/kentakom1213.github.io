@@ -350,11 +350,13 @@ mod tests {
                 key: "research".to_string(),
                 order: None,
                 sort: None,
+                rev: None,
                 items: vec![item_publication()],
                 subsections: vec![content::model::SubsectionToml {
                     name: "Sub".to_string(),
                     order: None,
                     sort: None,
+                    rev: None,
                     items: vec![item_timeline("2020-01", Some("Detail"))],
                 }],
             }],

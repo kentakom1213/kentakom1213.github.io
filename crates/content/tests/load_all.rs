@@ -50,10 +50,15 @@ order = 1
         r#"name = "Section A"
 key = "a"
 order = 2
+sort = "date"
+rev = true
 
 [[items]]
 date = "2020-01-01"
 title = "Old"
+
+[[items]]
+title = "None"
 
 [[items]]
 start_date = "2021-05"
@@ -62,14 +67,18 @@ title = "New"
 [[subsections]]
 name = "Sub A1"
 order = 1
+sort = "title"
 
   [[subsections.items]]
   date = "2019"
-  title = "Sub Old"
+  title = "Sub B"
+
+  [[subsections.items]]
+  title = "Sub C"
 
   [[subsections.items]]
   start_date = "2022-01-01"
-  title = "Sub New"
+  title = "Sub A"
 "#,
     );
 
@@ -84,21 +93,24 @@ order = 0
 
     let data = load_all(LoadOptions {
         content_dir: content_dir.clone(),
-        sort_items: true,
     })
     .unwrap();
+
+    println!("{data:#?}");
 
     assert_eq!(data.sections.len(), 2);
     assert_eq!(data.sections[0].key, "b");
     assert_eq!(data.sections[1].key, "a");
 
     let items = &data.sections[1].items;
-    assert_eq!(items.len(), 2);
+    assert_eq!(items.len(), 3);
     assert_eq!(items[0].title, "New");
     assert_eq!(items[1].title, "Old");
+    assert_eq!(items[2].title, "None");
 
     let sub_items = &data.sections[1].subsections[0].items;
-    assert_eq!(sub_items.len(), 2);
-    assert_eq!(sub_items[0].title, "Sub New");
-    assert_eq!(sub_items[1].title, "Sub Old");
+    assert_eq!(sub_items.len(), 3);
+    assert_eq!(sub_items[0].title, "Sub A");
+    assert_eq!(sub_items[1].title, "Sub B");
+    assert_eq!(sub_items[2].title, "Sub C");
 }
