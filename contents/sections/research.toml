@@ -5,6 +5,8 @@ order = 10
 [[subsections]]
 name = "査読無し国内発表"
 order = 10
+sort = "date"
+rev = true
 
 [[subsections.items]]
 authors = ["◯甲本健太", "栗田和宏", "小野廣隆"]

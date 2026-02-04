@@ -1,6 +1,7 @@
 name = "学歴"
 key = "education"
 order = 30
+sort = "date"
 
 [[items]]
 date = "2021-3"

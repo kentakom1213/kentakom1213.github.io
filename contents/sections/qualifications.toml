@@ -1,6 +1,7 @@
 name = "資格"
 key = "qualifications"
 order = 50
+sort = "date"
 
 [[items]]
 date = "2025-07"

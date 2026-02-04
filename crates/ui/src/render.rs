@@ -127,18 +127,15 @@ fn render_item_line(it: &ItemToml) -> Markup {
 
 fn is_publication_like(it: &ItemToml) -> bool {
     !it.authors.is_empty()
-        && !it.venue.as_deref().unwrap_or("").trim().is_empty()
-        && !it.location.as_deref().unwrap_or("").trim().is_empty()
-        && !it.date.as_deref().unwrap_or("").trim().is_empty()
 }
 
 /// 指定フォーマット：
 /// `○著者, "タイトル," 会議名, 開催地, 2025年7月23日`
 fn render_publication_like(it: &ItemToml) -> Markup {
     let title = &it.title;
-    let venue = it.venue.as_deref().unwrap_or("");
-    let location = it.location.as_deref().unwrap_or("");
-    let date_ja = it.date.as_deref().map(format_date_ja).unwrap_or_default();
+    let venue = it.venue.as_deref();
+    let location = it.location.as_deref();
+    let date_ja = it.date.as_deref().map(format_date_ja);
 
     html! {
         @for (i, author) in it.authors.iter().enumerate() {
@@ -148,12 +145,19 @@ fn render_publication_like(it: &ItemToml) -> Markup {
             }
         }
         ", "
-        "\""(render_text_with_links(title))"\", "
-        (render_text_with_links(venue))
-        ", "
-        (render_text_with_links(location))
-        ", "
-        (date_ja)
+        "\""(render_text_with_links(title))"\""
+        @if let Some(venue) = venue {
+            ", "
+            (render_text_with_links(venue))
+        }
+        @if let Some(location) = location {
+            ", "
+            (render_text_with_links(location))
+        }
+        @if let Some(date_ja) = date_ja {
+            ", "
+            (date_ja)
+        }
         @if let Some(detail) = it.detail.as_deref() {
             @if !detail.trim().is_empty() {
                 " — " (render_text_with_links(detail))
