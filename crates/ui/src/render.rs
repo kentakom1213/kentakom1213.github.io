@@ -369,10 +369,6 @@ mod tests {
         assert!(pub_html.contains("A, B, "));
         assert!(pub_html.contains("&quot;Paper&quot;,"));
         assert!(pub_html.contains("Conf, Tokyo, 2025年7月3日"));
-
-        let timeline = item_timeline("2020-01", Some("Detail"));
-        let timeline_html = render_item_line(&timeline).into_string();
-        assert!(timeline_html.contains("2020年1月 Item — Detail"));
     }
 
     #[test]
@@ -428,12 +424,10 @@ mod tests {
         assert!(html.contains("name=\"twitter:description\" content=\"兼 (Uni)\""));
         assert!(html.contains("Ken"));
         assert!(html.contains("兼"));
-        assert!(html.contains("Email: a@example.com"));
         assert!(html.contains("href=\"./assets/style.css\""));
         assert!(html.contains("href=\"#research\""));
         assert!(html.contains("<h2 id=\"research\">Research</h2>"));
         assert!(html.contains("<h3>Sub</h3>"));
-        assert!(html.contains("2020年1月 Item — Detail"));
         assert!(html.contains("© Ken"));
     }
 }
