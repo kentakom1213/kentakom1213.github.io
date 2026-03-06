@@ -225,8 +225,10 @@ fn render_timeline_like(it: &ItemToml) -> Markup {
         }
         span class="label" {
             (render_text_with_links(&it.title))
-            @if let Some(detail) = it.detail.as_deref() {
-                @if !detail.trim().is_empty() {
+        }
+        @if let Some(detail) = it.detail.as_deref() {
+            @if !detail.trim().is_empty() {
+                span class="label" {
                     " — " (render_text_with_links(detail))
                 }
             }
