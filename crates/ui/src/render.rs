@@ -76,17 +76,21 @@ fn render_header(data: &IndexData) -> Markup {
             h1 { (p.name.ja) }
             p class="en-name" { (p.name.en) }
 
-            p class="label" {
+            p {
                 span { "所属: " }
                 wbr {}
-                (p.affiliation.affiliation)
+                span class="label" {
+                    (p.affiliation.affiliation)
+                }
             }
 
             @if let Some(email) = &p.contact.email {
-                p class="label" {
+                p {
                     span { "Email: " }
                     wbr {}
-                    (email)
+                    span class="label" {
+                        (email)
+                    }
                 }
             }
 
@@ -219,10 +223,12 @@ fn render_timeline_like(it: &ItemToml) -> Markup {
         @if let Some(t) = time {
             (t) " "
         }
-        (render_text_with_links(&it.title))
-        @if let Some(detail) = it.detail.as_deref() {
-            @if !detail.trim().is_empty() {
-                " — " (render_text_with_links(detail))
+        span class="label" {
+            (render_text_with_links(&it.title))
+            @if let Some(detail) = it.detail.as_deref() {
+                @if !detail.trim().is_empty() {
+                    " — " (render_text_with_links(detail))
+                }
             }
         }
     }
