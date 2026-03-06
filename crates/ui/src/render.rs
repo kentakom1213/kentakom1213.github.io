@@ -76,13 +76,17 @@ fn render_header(data: &IndexData) -> Markup {
             h1 { (p.name.ja) }
             p class="en-name" { (p.name.en) }
 
-            p {
-                "所属: " (p.affiliation.affiliation)
+            p class="label" {
+                span { "所属: " }
+                wbr {}
+                (p.affiliation.affiliation)
             }
 
             @if let Some(email) = &p.contact.email {
-                p {
-                    "Email: " (email)
+                p class="label" {
+                    span { "Email: " }
+                    wbr {}
+                    (email)
                 }
             }
 
