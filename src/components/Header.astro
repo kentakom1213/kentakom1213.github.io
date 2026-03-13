@@ -1,20 +1,41 @@
 ---
-import type { TocItem } from "../utils/toc";
 import { siteConfig } from "../utils/site";
+import type { TocItem } from "../utils/toc";
 
 type Props = {
   items: TocItem[];
+  locale?: "ja" | "en";
+  affiliation?: string;
 };
 
-const { items } = Astro.props;
+const {
+  items,
+  locale = "ja",
+  affiliation = siteConfig.affiliation,
+} = Astro.props;
+
+const isEnglish = locale === "en";
+const [nameMain, nameSub] = locale === "ja"
+  ? [siteConfig.nameJa, siteConfig.nameEn]
+  : [siteConfig.nameEn, siteConfig.nameJa];
+const affiliationLabel = isEnglish ? "Affiliation" : "所属";
 ---
 
 <header>
-  <h1>{siteConfig.nameJa}</h1>
-  <p class="en-name">{siteConfig.nameEn}</p>
+  <div class="name-stack">
+    <div class="heading-row">
+      <h1>{nameMain}</h1>
+      <p class="secondary-name">{nameSub}</p>
+      <p class="locale-switch" aria-label="Language switcher">
+        <a href="/" aria-current={isEnglish ? undefined : "page"}>JP</a>
+        <span aria-hidden="true"> | </span>
+        <a href="/en/" aria-current={isEnglish ? "page" : undefined}>EN</a>
+      </p>
+    </div>
+  </div>
   <p>
-    <span>所属: </span>
-    <span class="label">{siteConfig.affiliation}</span>
+    <span>{affiliationLabel}: </span>
+    <span class="label">{affiliation}</span>
   </p>
   <p>
     <span>Email: </span>
@@ -22,41 +43,64 @@ const { items } = Astro.props;
   </p>
   <nav aria-label="Section navigation">
     <ul>
-      {
-        items.map((item) => (
-          <li>
-            <a href={`#${item.id}`}>{item.text}</a>
-          </li>
-        ))
-      }
+      {items.map((item) => (
+        <li>
+          <a href={`#${item.id}`}>{item.text}</a>
+        </li>
+      ))}
     </ul>
   </nav>
 </header>
 
 <style>
-  header {
-    margin: 0 auto 50px;
-  }
+header {
+  margin: 0 auto 50px;
+}
 
-  h1 {
-    display: inline-block;
-    margin: 0 20px 20px 0;
-    vertical-align: bottom;
-    line-height: 1;
-    white-space: nowrap;
-    font-weight: 400;
-  }
+.heading-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+}
 
-  .en-name {
-    display: inline-block;
-    margin: 0 0 20px;
-    vertical-align: bottom;
-    line-height: 1;
-  }
+.name-stack {
+  margin-bottom: 20px;
+}
 
-  p {
-    margin: 0;
-    word-break: keep-all;
-    overflow-wrap: normal;
+h1 {
+  display: inline-block;
+  margin: 0;
+  line-height: 1;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.secondary-name {
+  margin: 0;
+  line-height: 1;
+}
+
+p {
+  margin: 0;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.locale-switch {
+  margin-left: auto;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.locale-switch a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .heading-row {
+    gap: 8px 16px;
   }
+}
 </style>

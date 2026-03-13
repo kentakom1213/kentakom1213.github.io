@@ -4,21 +4,29 @@ import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import PageHead from "../components/PageHead.astro";
-import Contents from "../contents/contents.md";
-import contentsRaw from "../contents/contents.md?raw";
+import Contents from "../contents/contents-en.md";
+import contentsRaw from "../contents/contents-en.md?raw";
 import { siteConfig } from "../utils/site";
 import { createTocItems } from "../utils/toc";
 
 const tocItems = createTocItems(contentsRaw);
+const englishSiteConfig = {
+  ...siteConfig,
+  title: "KOMOTO Kenta",
+  description:
+    "Kenta Komoto, Master's student in Mathematical Informatics, Graduate School of Informatics, Nagoya University",
+};
+const affiliation =
+  "Master's Program in Mathematical Informatics, Graduate School of Informatics, Nagoya University";
 ---
 
-<html lang="ja">
+<html lang="en">
   <head>
-    <PageHead {...siteConfig} />
+    <PageHead {...englishSiteConfig} />
   </head>
   <body>
     <div class="container">
-      <Header items={tocItems} />
+      <Header items={tocItems} locale="en" affiliation={affiliation} />
       <main>
         <Contents />
       </main>

@@ -2,7 +2,7 @@
   "editor.defaultFormatter": "dprint.dprint",
   "dprint.path": "$HOME/.cargo/bin/dprint",
   "[markdown]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "dprint.dprint"
-  }
+  },
+  "editor.formatOnSave": true
 }
