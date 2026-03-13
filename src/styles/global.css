@@ -4,10 +4,16 @@
   --bg: #f0f0f0;
   --paper: #ffffff;
   --ink: #000000;
+  --link: #0b57d0;
 }
 
 body {
   margin: 0;
   background-color: var(--bg);
   font-family: "Noto Sans JP";
+}
+
+a,
+a:visited {
+  color: var(--link);
 }
