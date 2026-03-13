@@ -1,0 +1,25 @@
+---
+import "../styles/global.css";
+
+import Contents from "../contents/contents.md";
+
+const config = {
+  title: "甲本健太 | KOMOTO Kenta",
+  googleSiteVerification: "7Pja-gmgJ-5jKr55Kqomfcqz0kXFHnoUAHNyGARYCDo",
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{config.title}</title>
+  </head>
+  <body>
+    <div class="container">
+      <Contents />
+    </div>
+  </body>
+</html>

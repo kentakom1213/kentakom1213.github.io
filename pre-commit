@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# ビルド
-cargo run -p sitegen -q -- contents 
-
-# 追加
-sync
-git add docs

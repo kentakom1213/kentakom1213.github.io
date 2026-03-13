@@ -51,11 +51,6 @@ header p {
   overflow-wrap: normal;
 }
 
-.label {
-  /* white-space: nowrap; */
-  display: inline-block;
-}
-
 section {
   margin: 40px 0 0;
 }
