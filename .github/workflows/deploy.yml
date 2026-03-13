@@ -2,8 +2,9 @@ name: Deploy to GitHub Pages
 
 on:
   # `main`ブランチにプッシュするたびにワークフローをトリガーします。
-  # 別のブランチを使用している場合は、`main`をそのブランチ名に置き換えてください。
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
   # GitHub上のActionsタブからこのワークフローを手動で実行できます。
   workflow_dispatch:
@@ -32,6 +33,7 @@ jobs:
 
   deploy:
     needs: build
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
