@@ -1,0 +1,59 @@
+---
+import "../styles/global.css";
+
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import PageHead from "../components/PageHead.astro";
+import Contents from "../contents/contents.md";
+import contentsRaw from "../contents/contents.md?raw";
+import { siteConfig } from "../utils/site";
+import { createTocItems } from "../utils/toc";
+
+const tocItems = createTocItems(contentsRaw);
+---
+
+<html lang="ja">
+  <head>
+    <PageHead {...siteConfig} />
+  </head>
+  <body>
+    <div class="container">
+      <Header items={tocItems} />
+      <main>
+        <Contents />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style>
+  .container {
+    width: min(100%, 900px);
+    box-sizing: border-box;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px;
+    display: block;
+    background-color: var(--paper);
+  }
+
+  main {
+    display: block;
+  }
+
+  :global(h2),
+  :global(h3) {
+    font-weight: 400;
+  }
+
+  :global(section) {
+    margin: 40px 0 0;
+  }
+
+  :global(section h2) {
+    width: 200px;
+    padding: 0 0 1px 5px;
+    border-bottom: 1.5px solid #000;
+  }
+</style>
