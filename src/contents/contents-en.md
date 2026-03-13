@@ -20,23 +20,23 @@
 
 ### Internships
 
-- Aug 2025 - Sep 2025 LY Corporation (Backend Engineer)
-- Jun 2024 - Present AVILEN Inc. (Backend Engineer)
-- Sep 2023 - Sep 2023 Churadata Inc. (Data Engineer)
-- Jun 2023 - Oct 2024 iCrystal Inc. (Data Scientist)
-- Apr 2021 - Present Nagoya University NUOCW Project (Backend Engineer)
+- `Aug 2025 - Sep 2025`&emsp; LY Corporation (Backend Engineer)
+- `Jun 2024 - Present`&emsp;&ensp; AVILEN Inc. (Backend Engineer)
+- `Sep 2023 - Sep 2023`&emsp; Churadata Inc. (Data Engineer)
+- `Jun 2023 - Oct 2024`&emsp; AIxtal Inc. (Data Scientist)
+- `Apr 2021 - Present`&emsp;&ensp; Nagoya University NUOCW Project (Backend Engineer)
 
 ## Education
 
-- March 2021 Graduated from Akita Prefectural Akita High School, Science Course
-- April 2021 Entered the School of Informatics, Nagoya University
-- March 2025 Graduated from the School of Informatics, Nagoya University
-- April 2025 Entered the Master's Program in Mathematical Informatics, Graduate School of Informatics, Nagoya University
+- `March 2021`&emsp; Graduated from Akita Prefectural Akita High School, Science Course
+- `April 2021`&emsp; Entered the School of Informatics, Nagoya University
+- `March 2025`&emsp; Graduated from the School of Informatics, Nagoya University
+- `April 2025`&emsp; Entered the Master's Program in Mathematical Informatics, Graduate School of Informatics, Nagoya University
 
 ## Certifications
 
-- June 2023 Fundamental Information Technology Engineer Examination
-- July 2025 Applied Information Technology Engineer Examination
+- `June 2023`&emsp; Fundamental Information Technology Engineer Examination
+- `July 2025`&emsp; Applied Information Technology Engineer Examination
 
 ## Links
 
