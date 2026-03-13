@@ -1,0 +1,58 @@
+---
+import type { TocItem } from "../utils/toc";
+import { siteConfig } from "../utils/site";
+
+type Props = {
+  items: TocItem[];
+};
+
+const { items } = Astro.props;
+---
+
+<header>
+  <h1>{siteConfig.nameJa}</h1>
+  <p class="en-name">{siteConfig.nameEn}</p>
+  <p>
+    <span>所属: </span>
+    <span class="label">{siteConfig.affiliation}</span>
+  </p>
+  <p>
+    <span>Email: </span>
+    <span class="label">{siteConfig.email}</span>
+  </p>
+  <nav aria-label="Section navigation">
+    <ul>
+      {
+        items.map((item) => (
+          <li>
+            <a href={`#${item.id}`}>{item.text}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  h1 {
+    display: inline-block;
+    margin: 0 20px 20px 0;
+    vertical-align: bottom;
+    line-height: 1;
+    white-space: nowrap;
+    font-weight: 400;
+  }
+
+  .en-name {
+    display: inline-block;
+    margin: 0 0 20px;
+    vertical-align: bottom;
+    line-height: 1;
+  }
+
+  p {
+    margin: 0;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+</style>

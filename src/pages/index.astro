@@ -1,25 +1,59 @@
 ---
 import "../styles/global.css";
 
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import PageHead from "../components/PageHead.astro";
 import Contents from "../contents/contents.md";
+import contentsRaw from "../contents/contents.md?raw";
+import { siteConfig } from "../utils/site";
+import { createTocItems } from "../utils/toc";
 
-const config = {
-  title: "甲本健太 | KOMOTO Kenta",
-  googleSiteVerification: "7Pja-gmgJ-5jKr55Kqomfcqz0kXFHnoUAHNyGARYCDo",
-};
+const tocItems = createTocItems(contentsRaw);
 ---
 
-<html lang="en">
+<html lang="ja">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{config.title}</title>
+    <PageHead {...siteConfig} />
   </head>
   <body>
     <div class="container">
-      <Contents />
+      <Header items={tocItems} />
+      <main>
+        <Contents />
+      </main>
+      <Footer />
     </div>
   </body>
 </html>
+
+<style>
+  .container {
+    width: min(100%, 900px);
+    box-sizing: border-box;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px;
+    display: block;
+    background-color: var(--paper);
+  }
+
+  main {
+    display: block;
+  }
+
+  :global(h2),
+  :global(h3) {
+    font-weight: 400;
+  }
+
+  :global(section) {
+    margin: 40px 0 0;
+  }
+
+  :global(section h2) {
+    width: 200px;
+    padding: 0 0 1px 5px;
+    border-bottom: 1.5px solid #000;
+  }
+</style>
