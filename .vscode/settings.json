@@ -1,6 +1,6 @@
 {
   "editor.defaultFormatter": "dprint.dprint",
-  "dprint.path": "/home/powell/.cargo/bin/dprint",
+  "dprint.path": "$HOME/.cargo/bin/dprint",
   "[markdown]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "dprint.dprint"
