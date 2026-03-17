@@ -4,10 +4,14 @@
 
 ## 研究
 
+### 国際会議（査読なし）
+
+1. **Kenta Komoto**, Kazuhiro Kurita, Hirotaka Ono. "On the Complexity of Maximal/Closed Frequent Tree Mining for Bounded Height Trees". International Workshop on Discrete Mathematics and Algorithms 2026 (DMA2026). Matsue, Japan. March 16–18, 2026.
+
 ### 国内会議（査読なし）
 
-1. **甲本健太**，栗田和宏，小野廣隆．"On the Complexity of Maximal/Closed Frequent Tree Mining for Bounded Height Trees"．アルゴリズム研究会，岡山，2026年3月9日．
-2. **甲本健太**，栗田和宏，小野廣隆．"高さ定数の根付き木に対する極大/飽和頻出部分木マイニング問題の計算複雑性"．アルゴリズム研究会，高知，2025年11月13日．
+1. **甲本健太**，栗田和宏，小野廣隆．"On the Complexity of Maximal/Closed Frequent Tree Mining for Bounded Height Trees"．第207回アルゴリズム研究発表会，岡山，2026年3月9日．
+2. **甲本健太**，栗田和宏，小野廣隆．"高さ定数の根付き木に対する極大/飽和頻出部分木マイニング問題の計算複雑性"．第205回アルゴリズム研究発表会，高知，2025年11月13日．
 3. **甲本健太**，栗田和宏，小野廣隆．"⾼さ2の根付き⽊に対する頻出飽和部分⽊の多項式遅延列挙"．2025年度夏のLAシンポジウム，岩手，2025年7月23日．
 4. **甲本健太**，栗田和宏，小野廣隆．"ラベル付き木に対する極大頻出部分木マイニングの計算複雑性"．列挙アルゴリズムセミナー，群馬，2025年3月6日．
 5. **甲本健太**，栗田和宏，小野廣隆．"ラベル付き木に対する極大頻出誘導部分木マイニングの計算複雑性"．第52回日本OR学会中部支部研究発表会，愛知，2025年3月1日．

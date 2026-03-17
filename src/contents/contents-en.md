@@ -4,6 +4,10 @@
 
 ## Research
 
+### International Workshops and Meetings (Non-peer-reviewed)
+
+1. **Kenta Komoto**, Kazuhiro Kurita, Hirotaka Ono. "On the Complexity of Maximal/Closed Frequent Tree Mining for Bounded Height Trees". International Workshop on Discrete Mathematics and Algorithms 2026 (DMA2026). Matsue, Japan. March 16–18, 2026.
+
 ### Domestic Workshops and Meetings (Non-peer-reviewed)
 
 1. **Kenta Komoto**, Kazuhiro Kurita, Hirotaka Ono. "On the Complexity of Maximal/Closed Frequent Tree Mining for Bounded Height Trees". Algorithms Research Meeting, Okayama, March 9, 2026.
