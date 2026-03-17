@@ -40,6 +40,16 @@ const affiliationLabel = isEnglish ? "Affiliation" : "所属";
   <p>
     <span>Email: </span>
     <span class="label">{siteConfig.email}</span>
+    <button
+      id="email-copy-button"
+      class="copy-button"
+      type="button"
+      aria-label="Copy email address"
+      data-email={siteConfig.email}
+    >
+      ⧉
+    </button>
+    <span id="email-copy-status" class="copy-status" aria-live="polite"></span>
   </p>
   <nav aria-label="Section navigation">
     <ul>
@@ -51,6 +61,26 @@ const affiliationLabel = isEnglish ? "Affiliation" : "所属";
     </ul>
   </nav>
 </header>
+
+<script>
+  const emailCopyButton = document.getElementById("email-copy-button");
+  const emailCopyStatus = document.getElementById("email-copy-status");
+  let emailCopyStatusTimer;
+
+  emailCopyButton?.addEventListener("click", async () => {
+    const email = emailCopyButton.getAttribute("data-email")?.replace("(at)", "@");
+    if (!email) return;
+
+    await navigator.clipboard.writeText(email);
+    if (!emailCopyStatus) return;
+
+    emailCopyStatus.textContent = "Copied";
+    clearTimeout(emailCopyStatusTimer);
+    emailCopyStatusTimer = window.setTimeout(() => {
+      emailCopyStatus.textContent = "";
+    }, 1600);
+  });
+</script>
 
 <style>
 header {
@@ -85,6 +115,24 @@ p {
   margin: 0;
   word-break: keep-all;
   overflow-wrap: normal;
+}
+
+.copy-button {
+  margin-left: 0.4em;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.copy-status {
+  display: inline-block;
+  min-width: 4.5em;
+  margin-left: 0.4em;
+  font-size: 0.9em;
 }
 
 .locale-switch {
