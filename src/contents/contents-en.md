@@ -48,3 +48,4 @@
 - GitHub: [kentakom1213](https://github.com/kentakom1213/)
 - AtCoder: [powell](https://atcoder.jp/users/powell)
 - Graph Visualization App: [Graph Editor](https://kentakom1213.github.io/graph-editor)
+- Blog: [blog.pwll.dev](https://blog.pwll.dev)
