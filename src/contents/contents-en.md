@@ -4,8 +4,13 @@
 
 ## Research
 
+### International Workshops and Meetings (Non-peer-reviewed)
+
+1. **Kenta Komoto**, Kazuhiro Kurita, Hirotaka Ono. "On the Complexity of Maximal/Closed Frequent Tree Mining for Bounded Height Trees". International Workshop on Discrete Mathematics and Algorithms 2026 (DMA2026). Matsue, Japan. March 16–18, 2026.
+
 ### Domestic Workshops and Meetings (Non-peer-reviewed)
 
+1. **Kenta Komoto**, Kazuhiro Kurita, Hirotaka Ono. "On the Complexity of Maximal/Closed Frequent Tree Mining for Bounded Height Trees". Enumeration Algorithms Seminar, Oita, March 20, 2026.
 1. **Kenta Komoto**, Kazuhiro Kurita, Hirotaka Ono. "On the Complexity of Maximal/Closed Frequent Tree Mining for Bounded Height Trees". Algorithms Research Meeting, Okayama, March 9, 2026.
 2. **Kenta Komoto**, Kazuhiro Kurita, Hirotaka Ono. "Computational Complexity of Maximal/Closed Frequent Subtree Mining for Rooted Trees with Constant Height". Algorithms Research Meeting, Kochi, November 13, 2025.
 3. **Kenta Komoto**, Kazuhiro Kurita, Hirotaka Ono. "Polynomial-delay Enumeration of Frequent Closed Subtrees in Rooted Trees of Height 2". LA Symposium Summer 2025, Iwate, July 23, 2025.
@@ -43,3 +48,4 @@
 - GitHub: [kentakom1213](https://github.com/kentakom1213/)
 - AtCoder: [powell](https://atcoder.jp/users/powell)
 - Graph Visualization App: [Graph Editor](https://kentakom1213.github.io/graph-editor)
+- Blog: [blog.pwll.dev](https://blog.pwll.dev)
