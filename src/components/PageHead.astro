@@ -1,20 +1,34 @@
 ---
 import type { siteConfig } from "../utils/site";
 
-type Props = typeof siteConfig;
+type Props = typeof siteConfig & {
+  canonical?: string;
+};
 
-const { title, description, googleSiteVerification } = Astro.props;
+const {
+  title,
+  description,
+  googleSiteVerification,
+  canonical = "https://kentakom1213.github.io/",
+} = Astro.props;
 ---
 
 <meta charset="utf-8" />
 <link rel="icon" type="image/png" href="/favicon.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
+
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
 <meta property="og:title" content={title} />
 <meta property="og:type" content="website" />
 <meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
+
 <meta name="google-site-verification" content={googleSiteVerification} />
 <title>{title}</title>
